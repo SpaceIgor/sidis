@@ -81,7 +81,6 @@ async def view_directory(request: Request):
         return RedirectResponse(url='/login')
 
     # Check if the user has necessary permissions or any other authentication logic
-    # You may want to customize this part based on your requirements
 
     # Get the list of files and folders in the specified directory
     files_and_folders = os.listdir(TARGET_DIRECTORY)
@@ -120,7 +119,6 @@ async def add_item(request: Request, item_name: str = Form(...)):
         return RedirectResponse(url='/login')
 
     # Check if the user has necessary permissions or any other authentication logic
-    # You may want to customize this part based on your requirements
 
     # Add the new item to the directory
     new_item_path = os.path.join(TARGET_DIRECTORY, item_name)
@@ -128,8 +126,6 @@ async def add_item(request: Request, item_name: str = Form(...)):
         if not item_name.strip():  # Check if the item name is not empty or whitespace
             return HTMLResponse('<p>Item name cannot be empty or whitespace.</p>')
         else:
-            # You can customize this part based on the type of item you want to add (file or directory)
-            # For now, let's assume it's a file
             with open(new_item_path, 'w') as new_file:
                 new_file.write('')  # Create an empty file
 
@@ -164,9 +160,8 @@ async def delete_item(request: Request, item_name: str = Form(...)):
         return RedirectResponse(url='/login')
 
     # Check if the user has necessary permissions or any other authentication logic
-    # You may want to customize this part based on your requirements
-
     # Delete the specified item from the directory
+    
     item_path = os.path.join(TARGET_DIRECTORY, item_name)
     if os.path.exists(item_path):
         if os.path.isdir(item_path):
@@ -216,7 +211,6 @@ async def move_item(request: Request, item_name: str = Form(...), destination_fo
         return RedirectResponse(url='/login')
 
     # Check if the user has necessary permissions or any other authentication logic
-    # You may want to customize this part based on your requirements
 
     # Move the specified item to the destination folder
     item_path = os.path.join(TARGET_DIRECTORY, item_name)
@@ -267,7 +261,6 @@ async def edit_file(request: Request, file_name: str = Form(...), file_content: 
         return RedirectResponse(url='/login')
 
     # Check if the user has necessary permissions or any other authentication logic
-    # You may want to customize this part based on your requirements
 
     # Edit the content of the specified file
     file_path = os.path.join(TARGET_DIRECTORY, file_name)
